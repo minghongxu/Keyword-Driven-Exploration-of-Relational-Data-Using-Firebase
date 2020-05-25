@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<br>
+<h2>{{ table }}</h2>
+<table border="2">
+{% if table == 'movies' %}
+	<tr><th>movieId</th><th>title</th><th>genres</th><tr>
+	{% for tuple in heap %}
+		<tr><th><a href="/movie/ratings/movieId/{{ heap[tuple]['movieId'] }}">{{ heap[tuple]['movieId'] }}</a></th>
+		<th>{{ heap[tuple]['title'] }}</th><th>{{ heap[tuple]['genres'] }}</th><tr>
+	{% endfor %}
+
+{% elif table == 'ratings' %}
+	<tr><th>Index</th><th>userId</th><th>movieId</th><th>rating</th><th>timestamp</th><tr>
+	{% for tuple in heap %}
+		<tr><th>{{ heap[tuple]['Index'] }}</th>
+		<th><a href="/movie/tags/userId/{{ heap[tuple]['userId'] }}">{{ heap[tuple]['userId'] }}</a></th>
+		<th><a href="/movie/movies/movieId/{{ heap[tuple]['movieId'] }}">{{ heap[tuple]['movieId'] }}</a></th>
+		<th>{{ heap[tuple]['rating'] }}</th><th>{{ heap[tuple]['timestamp'] }}</th><tr>
+	{% endfor %}
+
+
+{% elif table == 'tags' %}
+	<tr><th>Index</th><th>userId</th><th>movieId</th><th>tag</th><tr>
+	{% for tuple in heap %}
+		<tr><th>{{ heap[tuple]['Index'] }}</th>
+		<th><a href="/movie/ratings/userId/{{ heap[tuple]['userId'] }}">{{ heap[tuple]['userId'] }}</a></th>
+		<th><a href="/movie/movies/movieId/{{ heap[tuple]['movieId'] }}">{{ heap[tuple]['movieId'] }}</a></th>
+		<th>{{ heap[tuple]['tag'] }}</th><tr>
+	{% endfor %}
+{% endif %}
+
+</table>
+
+{% endblock %}

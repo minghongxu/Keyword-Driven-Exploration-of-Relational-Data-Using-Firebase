@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	<table>
+		{% for table in result %}
+			<br>
+			<h2>{{ table }}</h2>
+			<table border="2">
+			{% if table == 'country' %}
+				<tr><th>Code</th><th>Name</th><th>Continent</th><th>Region</th><th>SurfaceArea</th><th>IndepYear</th><th>Population</th><th>LifeExpectancy</th><th>GNP</th><th>GNPOld</th><th>LocalName</th><th>GovernmentForm</th><th>HeadOfState</th><th>Capital</th><th>Code2</th><tr>
+				{% for heap in result[table] %}
+					{% for tuple in heap %}
+						<tr><th><a>{{ heap[tuple]['Code'] }}</a></th>
+						<th>{{ heap[tuple]['Name'] }}</th><th>{{ heap[tuple]['Continent'] }}</th><th>{{ heap[tuple]['Region'] }}</th><th>{{ heap[tuple]['SurfaceArea'] }}</th><th>{{ heap[tuple]['IndepYear'] }}</th><th>{{ heap[tuple]['Population'] }}</th><th>{{ heap[tuple]['LifeExpectancy'] }}</th><th>{{ heap[tuple]['GNP'] }}</th><th>{{ heap[tuple]['GNPOld'] }}</th><th>{{ heap[tuple]['LocalName'] }}</th><th>{{ heap[tuple]['GovernmentForm'] }}</th><th>{{ heap[tuple]['HeadOfState'] }}</th><th>{{ heap[tuple]['Capital'] }}</th><th>{{ heap[tuple]['Code2'] }}</th><tr>
+					{% endfor %}
+				{% endfor %}
+
+			{% elif table == 'city' %}
+				<tr><th>ID</th><th>Name</th><th>CountryCode</th><th>District</th><th>Population</th><tr>
+				{% for heap in result[table] %}
+					{% for tuple in heap %}
+						<tr><th>{{ heap[tuple]['ID'] }}</th><th>{{ heap[tuple]['Name'] }}</th>
+						<th><a href="/world/country/Code/{{ heap[tuple]['CountryCode'] }}">{{ heap[tuple]['CountryCode'] }}</a></th>
+						<th>{{ heap[tuple]['District'] }}</th><th>{{ heap[tuple]['Population'] }}</th><tr>
+					{% endfor %}
+				{% endfor %}
+
+
+			{% elif table == 'countrylanguage' %}
+				<tr><th>CountryCode</th><th>Language</th><th>IsOfficial</th><th>Percentage</th><tr>
+				{% for heap in result[table] %}
+					{% for tuple in heap %}
+						<tr><th><a href="/world/country/Code/{{ heap[tuple]['CountryCode'] }}">{{ heap[tuple]['CountryCode'] }}</a></th>
+						<th>{{ heap[tuple]['Language'] }}</th><th>{{ heap[tuple]['IsOfficial'] }}</th><th>{{ heap[tuple]['Percentage'] }}</th><tr>
+					{% endfor %}
+				{% endfor %}
+			{% endif %}
+
+			
+
+
+			</table>
+		{% endfor %}
+	</table>
+{% endblock %}
+
+
+
+
+

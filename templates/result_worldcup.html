@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	<table>
+		{% for table in result %}
+			<br>
+			<h2>{{ table }}</h2>
+			<table border="2">
+			{% if table == 'WorldCupMatches' %}
+				<tr><th>Year</th><th>Datetime</th><th>Stage</th><th>Stadium</th><th>City</th><th>Home Team Name</th><th>Home Team Goals</th><th>Away Team Goals</th><th>Away Team Name</th><th>Attendance</th><th>Half-time Home Goals</th><th>Half-time Away Goals</th><th>Referee</th><th>Assistant 1</th><th>Assistant 2</th><th>RoundID</th><th>MatchID</th><th>Home Team Initials</th><th>Away Team Initials</th><tr>
+				{% for heap in result[table] %}
+					{% for tuple in heap %}
+						<tr><th><a href="/worldcup/WorldCups/Year/{{ heap[tuple]['Year'] }}">{{ heap[tuple]['Year'] }}</a></th>
+						<th>{{ heap[tuple]['Datetime'] }}</th><th>{{ heap[tuple]['Stage'] }}</th><th>{{ heap[tuple]['Stadium'] }}</th><th>{{ heap[tuple]['City'] }}</th>
+						<th>{{ heap[tuple]['Home Team Name'] }}</th>
+						<th>{{ heap[tuple]['Home Team Goals'] }}</th><th>{{ heap[tuple]['Away Team Goals'] }}</th>
+						<th>{{ heap[tuple]['Away Team Name'] }}</th>
+						<th>{{ heap[tuple]['Attendance'] }}</th><th>{{ heap[tuple]['Half-time Home Goals'] }}</th><th>{{ heap[tuple]['Half-time Away Goals'] }}</th><th>{{ heap[tuple]['Referee'] }}</th><th>{{ heap[tuple]['Assistant 1'] }}</th><th>{{ heap[tuple]['Assistant 2'] }}</th>
+						<th><a href="/worldcup/WorldCupPlayers/RoundID/{{ heap[tuple]['RoundID'] }}">{{ heap[tuple]['RoundID'] }}</a></th>
+						<th><a href="/worldcup/WorldCupPlayers/MatchID/{{ heap[tuple]['MatchID'] }}">{{ heap[tuple]['MatchID'] }}</a></th>
+						<th><a href="/worldcup/WorldCupPlayers/Team Initials/{{ heap[tuple]['Home Team Initials'] }}">{{ heap[tuple]['Home Team Initials'] }}</a></th>
+						<th><a href="/worldcup/WorldCupPlayers/Team Initials/{{ heap[tuple]['Away Team Initials'] }}">{{ heap[tuple]['Away Team Initials'] }}</a></th><tr>
+					{% endfor %}
+				{% endfor %}
+
+			{% elif table == 'WorldCupPlayers' %}
+				<tr><th>RoundID</th><th>MatchID</th><th>Team Initials</th><th>Coach Name</th><th>Line-up</th><th>Shirt Number</th><th>Player Name</th><tr>
+				{% for heap in result[table] %}
+					{% for tuple in heap %}
+						<tr><th><a href="/worldcup/WorldCupMatches/RoundID/{{ heap[tuple]['RoundID'] }}">{{ heap[tuple]['RoundID'] }}</a></th>
+						<th><a href="/worldcup/WorldCupMatches/MatchID/{{ heap[tuple]['MatchID'] }}">{{ heap[tuple]['MatchID'] }}</a></th>
+						<th><a href="/worldcup/WorldCupMatches/Home Team Initials/{{ heap[tuple]['Team Initials'] }}">{{ heap[tuple]['Team Initials'] }}</a></th>
+						<th>{{ heap[tuple]['Coach Name'] }}</th><th>{{ heap[tuple]['Line-up'] }}</th><th>{{ heap[tuple]['Shirt Number'] }}</th><th>{{ heap[tuple]['Player Name'] }}</th><tr>
+					{% endfor %}
+				{% endfor %}
+
+
+			{% elif table == 'WorldCups' %}
+				<tr><th>Year</th><th>Country</th><th>Winner</th><th>Runners-Up</th><th>Third</th><th>Fourth</th><th>GoalsScored</th><th>QualifiedTeams</th><th>MatchesPlayed</th><th>Attendance</th><tr>
+				{% for heap in result[table] %}
+					{% for tuple in heap %}
+						<tr><th><a href="/worldcup/WorldCupMatches/Year/{{ heap[tuple]['Year'] }}">{{ heap[tuple]['Year'] }}</a></th>
+						<th><a href="/worldcup/WorldCupMatches/Home Team Name/{{ heap[tuple]['Country'] }}">{{ heap[tuple]['Country'] }}</a></th>
+						<th><a href="/worldcup/WorldCupMatches/Home Team Name/{{ heap[tuple]['Winner'] }}">{{ heap[tuple]['Winner'] }}</a></th>
+						<th><a href="/worldcup/WorldCupMatches/Home Team Name/{{ heap[tuple]['Runners-Up'] }}">{{ heap[tuple]['Runners-Up'] }}</a></th>
+						<th><a href="/worldcup/WorldCupMatches/Home Team Name/{{ heap[tuple]['Third'] }}">{{ heap[tuple]['Third'] }}</a></th>
+						<th><a href="/worldcup/WorldCupMatches/Home Team Name/{{ heap[tuple]['Fourth'] }}">{{ heap[tuple]['Fourth'] }}</a></th>
+						<th>{{ heap[tuple]['GoalsScored'] }}</th><th>{{ heap[tuple]['QualifiedTeams'] }}</th><th>{{ heap[tuple]['MatchesPlayed'] }}</th><th>{{ heap[tuple]['Attendance'] }}</th><tr>
+					{% endfor %}
+				{% endfor %}
+			{% endif %}
+
+			
+
+
+			</table>
+		{% endfor %}
+	</table>
+{% endblock %}
+
+
+
+
+
+<!--
+
+-->

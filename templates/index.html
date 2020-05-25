@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Database Exploration</title>
+{% endblock %}
+
+{% block body %}
+<br>
+<h1>Home Page</h1>
+<br>
+<main role="main">
+	<div class="jumbotron">
+		<div class="col-sm-8 mx-auto">
+			<h1>Database Exploration</h1>
+			<p>This web application is a simple search application. Users can type in the words they want to search. And after choosing the database they want to search words at, they can click ‘confirm’ to search. In the searching results, users can click the foreign key to navigate to the related tables.</p>
+			<p>
+				<form action="/search" method="post">
+					<input class = "form=control" type="text" name="words" placeholder="Words">
+					<select name="database">
+						<option disabled selected value="">Database</option>
+						<option value="world">World</option>
+						<option value="movie">Movie</option>
+						<option value="worldcup">FIFA Worldcup</option>
+					</select>
+					<input type="submit" value="Confirm">
+				</form>
+			</p>
+		</div>
+	</div>
+</main>
+
+
+
+{% endblock %}
+
+<!--
+<div class="content">
+	<h1 style="text-align: center">Database Exploration</h1>
+	<form action="/search" method="post">
+		<input type="text" name="words" placeholder="Words">
+		<select name="database">
+			<option disabled selected value="">Database</option>
+			<option value="world">World</option>
+			<option value="movie">Movie</option>
+			<option value="worldcup">FIFA Worldcup</option>
+		</select>
+		<input type="submit" value="Confirm">
+	</form>
+</div>
+-->
